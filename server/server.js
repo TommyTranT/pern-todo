@@ -38,7 +38,17 @@ app.get("/todos", async(req, res) => {
   }
 })
 
-// edit a todo
+// get a specific todo
+app.get("/todos/:id", async(req, res) => {
+  try {
+    const { id } = req.params;
+    const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [id])
+
+    res.json(todo.rows[0])
+  } catch (error) {
+    console.error(error.message)
+  }
+})
 
 // delete a todo
 app.listen(PORT, () => {
