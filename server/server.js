@@ -31,7 +31,7 @@ app.post("/todos", async(req, res) => {
 // get all todo
 app.get("/todos", async(req, res) => {
   try {
-    
+    const allTodos = await pool.query("SELECT * FROM todo")
   } catch (error) {
     console.error(error.message)
   }
