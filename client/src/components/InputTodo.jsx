@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
 
+const url = "/todos"
+
 const InputTodo = () => {
   const [description, setDescription] = useState("");
 
@@ -8,7 +10,7 @@ const InputTodo = () => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch("http://localhost:8080/todos", {
+      const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
