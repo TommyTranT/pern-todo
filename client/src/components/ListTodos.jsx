@@ -51,7 +51,8 @@ const ListTodos = () => {
             <tr key={todo.todo_id}>
               <td>{todo.description}</td>
               <td>
-                <EditTodo />
+                {/* Passing down todo(id, description) to be able to use it in EditTodo */}
+                <EditTodo todo={todo} />
               </td>
               <td>
                 <button

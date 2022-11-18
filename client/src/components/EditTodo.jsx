@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { Fragment } from "react";
 
-const EditTodo = () => {
+const EditTodo = ({ todo }) => {
+  const [description, setDescription] = useState(todo.description);
   return (
     <Fragment>
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn btn-warning"
         data-toggle="modal"
         data-target="#myModal"
       >
@@ -23,10 +25,17 @@ const EditTodo = () => {
             </div>
 
             <div class="modal-body">
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" value={description} />
             </div>
 
             <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-warning"
+                data-dismiss="modal"
+              >
+                Edit
+              </button>
               <button type="button" class="btn btn-danger" data-dismiss="modal">
                 Close
               </button>
