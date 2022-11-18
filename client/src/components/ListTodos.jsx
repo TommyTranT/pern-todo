@@ -2,19 +2,17 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Fragment } from "react";
 
-const url = "/todos"
+const url = "/todos";
 
 const ListTodos = () => {
-  const [todos, setTodos] = useState([]); 
+  const [todos, setTodos] = useState([]);
 
   const getTodos = async () => {
     try {
+      const response = await fetch(url);
+      const jsonData = await response.json(); // Parse the data from json. This is our db Array
 
-      const response = await fetch(url)
-      const jsonData = await response.json() // Parse the data from json. This is our db Array
-
-
-      setTodos(jsonData)
+      setTodos(jsonData);
     } catch (error) {
       console.log(error.message);
     }
@@ -35,11 +33,15 @@ const ListTodos = () => {
           </tr>
         </thead>
         <tbody>
-          {todos.map(todo => (
+          {todos.map((todo) => (
             <tr>
               <td>{todo.description}</td>
-              <td>Edit</td>
-              <td>Delete</td>
+              <td>
+                <button className="btn btn-success">Edit</button>
+              </td>
+              <td>
+                <button className="btn btn-danger">Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
