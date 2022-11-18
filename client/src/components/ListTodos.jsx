@@ -34,7 +34,7 @@ const ListTodos = () => {
         </thead>
         <tbody>
           {todos.map((todo) => (
-            <tr>
+            <tr key={todo.todo_id}>
               <td>{todo.description}</td>
               <td>
                 <button className="btn btn-success">Edit</button>
