@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Fragment } from "react";
+import EditTodo from "./EditTodo";
 
 const url = "/todos";
 
@@ -50,7 +51,7 @@ const ListTodos = () => {
             <tr key={todo.todo_id}>
               <td>{todo.description}</td>
               <td>
-                <button className="btn btn-success">Edit</button>
+                <EditTodo />
               </td>
               <td>
                 <button
