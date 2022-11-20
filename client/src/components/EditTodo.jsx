@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Fragment } from "react";
+import axios from "axios";
 
 const url = "/todos";
 
@@ -7,21 +8,29 @@ const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
 
   //edit description function
-  const updateDescription = async (e) => {
-    e.preventDefault();
-    try {
-      const body = { description };
-      const response = await fetch(`${url}/${todo.todo_id}`, {
-        method: "PUT",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
+  // const updateDescription = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const body = { description };
+  //     const response = await fetch(`${url}/${todo.todo_id}`, {
+  //       method: "PUT",
+  //       headers: { "Content-type": "application/json" },
+  //       body: JSON.stringify(body),
+  //     });
 
+  //     window.location = "/";
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
+
+  const updateDescription = (e) => {
+    e.preventDefault();
+    const body = { description };
+    axios.put(`${url}/${todo.todo_id}`, body).then((res) => {
       window.location = "/";
-      console.log(response);
-    } catch (error) {
-      console.error(error.message);
-    }
+    });
   };
 
   return (
