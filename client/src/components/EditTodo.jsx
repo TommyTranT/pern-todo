@@ -40,7 +40,12 @@ const EditTodo = ({ todo }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title">Edit Todo</h4>
-              <button type="button" className="close" data-dismiss="modal">
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                onClick={() => setDescription(todo.description)}
+              >
                 &times;
               </button>
             </div>
