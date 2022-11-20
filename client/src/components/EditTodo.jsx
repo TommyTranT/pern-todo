@@ -35,11 +35,17 @@ const EditTodo = ({ todo }) => {
         Edit
       </button>
 
-      <div className="modal" id={`id${todo.todo_id}`}>
+      <div
+        className="modal"
+        id={`id${todo.todo_id}`}
+        // Click outside the modal
+        onClick={() => setDescription(todo.description)}
+      >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title">Edit Todo</h4>
+              {/* This is the little 'x' on the modal */}
               <button
                 type="button"
                 className="close"
@@ -72,6 +78,7 @@ const EditTodo = ({ todo }) => {
                 type="button"
                 className="btn btn-danger"
                 data-dismiss="modal"
+                onClick={() => setDescription(todo.description)}
               >
                 Close
               </button>
