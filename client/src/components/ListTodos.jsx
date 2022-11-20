@@ -2,22 +2,17 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Fragment } from "react";
 import EditTodo from "./EditTodo";
+import axios from "axios";
 
 const url = "/todos";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
 
-  // delete todo functoin
-  const deleteTodo = async (id) => {
-    try {
-      const deleteTodo = await fetch(`${url}/${id}`, {
-        method: "DELETE",
-      });
+  const deleteTodo = (id) => {
+    axios.delete(`${url}/${id}`).then((res) => {
       setTodos(todos.filter((todo) => todo.todo_id !== id));
-    } catch (error) {
-      console.error(error.message);
-    }
+    });
   };
 
   const getTodos = async () => {
