@@ -9,11 +9,33 @@ const url = "/todos";
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
 
+  // const deleteTodo = async (id) => {
+  //   try {
+  //     const deleteTodo = await fetch(`${url}/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     setTodos(todos.filter((todo) => todo.todo_id !== id));
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
+
   const deleteTodo = (id) => {
     axios.delete(`${url}/${id}`).then((res) => {
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     });
   };
+
+  // const getTodos = async () => {
+  //   try {
+  //     const response = await fetch(url);
+  //     const jsonData = await response.json();
+
+  //     setTodos(jsonData);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
 
   const getTodos = () => {
     axios.get(url).then((res) => {
