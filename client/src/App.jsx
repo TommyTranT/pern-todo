@@ -11,7 +11,7 @@ function App() {
   return (
     <Fragment>
       <div className="container">
-        <InputTodo />
+        <InputTodo todos={todos} setTodos={setTodos} />
         <ListTodos todos={todos} setTodos={setTodos} />
       </div>
     </Fragment>

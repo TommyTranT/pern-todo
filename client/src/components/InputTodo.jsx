@@ -4,7 +4,7 @@ import axios from "axios";
 
 const url = "/todos";
 
-const InputTodo = () => {
+const InputTodo = ({ todos, setTodos }) => {
   const [description, setDescription] = useState("");
 
   // const onSubmitForm = async (e) => {
@@ -29,7 +29,11 @@ const InputTodo = () => {
 
     axios.post(url, body).then((res) => {
       setDescription("");
-      window.location = "/";
+
+      // window.location = "/"; // -> Forces windows to refresh, use bottom code instead
+
+      // setTodos changes the listTodos state. Use this to prevent page refreshing
+      setTodos([...todos, res.data]);
     });
   };
 
