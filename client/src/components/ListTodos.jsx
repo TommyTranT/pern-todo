@@ -6,9 +6,7 @@ import axios from "axios";
 
 const url = "/todos";
 
-const ListTodos = () => {
-  const [todos, setTodos] = useState([]);
-
+const ListTodos = ({ todos, setTodos }) => {
   // const deleteTodo = async (id) => {
   //   try {
   //     const deleteTodo = await fetch(`${url}/${id}`, {
