@@ -7,36 +7,40 @@ const EditTodo = ({ todo }) => {
     <Fragment>
       <button
         type="button"
-        class="btn btn-warning"
+        className="btn btn-warning"
         data-toggle="modal"
-        data-target="#myModal"
+        data-target={`#id${todo.todo_id}`} // Targets which data to show. Targeting modal id
       >
         Edit
       </button>
 
-      <div class="modal" id="myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Edit Todo</h4>
-              <button type="button" class="close" data-dismiss="modal">
+      <div className="modal" id={`id${todo.todo_id}`}>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Edit Todo</h4>
+              <button type="button" className="close" data-dismiss="modal">
                 &times;
               </button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
               <input type="text" className="form-control" value={description} />
             </div>
 
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-dismiss="modal"
               >
                 Edit
               </button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">
+              <button
+                type="button"
+                className="btn btn-danger"
+                data-dismiss="modal"
+              >
                 Close
               </button>
             </div>
