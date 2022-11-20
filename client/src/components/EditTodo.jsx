@@ -1,8 +1,29 @@
 import { useState } from "react";
 import { Fragment } from "react";
 
+const url = "/todos";
+
 const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
+
+  //edit description function
+  const updateDescription = async (e) => {
+    e.preventDefault();
+    try {
+      const body = { description };
+      const response = await fetch(`${url}/${todo.todo_id}`, {
+        method: "PUT",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      window.location = "/";
+      console.log(response);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <Fragment>
       <button
@@ -25,7 +46,12 @@ const EditTodo = ({ todo }) => {
             </div>
 
             <div className="modal-body">
-              <input type="text" className="form-control" value={description} />
+              <input
+                type="text"
+                className="form-control"
+                value={description} // Current state
+                onChange={(e) => setDescription(e.target.value)} // Change state to new value in input
+              />
             </div>
 
             <div className="modal-footer">
@@ -33,6 +59,7 @@ const EditTodo = ({ todo }) => {
                 type="button"
                 className="btn btn-warning"
                 data-dismiss="modal"
+                onClick={(e) => updateDescription(e)} // POST fetch request to db
               >
                 Edit
               </button>
