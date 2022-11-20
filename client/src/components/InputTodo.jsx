@@ -1,25 +1,36 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const url = "/todos";
 
 const InputTodo = () => {
   const [description, setDescription] = useState("");
 
-  const onSubmitForm = async (e) => {
-    e.preventDefault();
-    try {
-      const body = { description };
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+  // const onSubmitForm = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const body = { description };
+  //     const response = await fetch(url, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(body),
+  //     });
 
+  //     window.location = "/";
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
+
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    const body = { description };
+
+    axios.post(url, body).then((res) => {
+      setDescription("");
       window.location = "/";
-    } catch (error) {
-      console.error(error.message);
-    }
+    });
   };
 
   return (
